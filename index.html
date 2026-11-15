@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#061326">
+<title>SMART VILLA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+<header>
+<svg class="logo" viewBox="0 0 50 50" aria-hidden="true"><path d="M4 23 25 5 46 23M10 20v25h30V20M20 45V30h10v15" fill="none" stroke="#f4f8ff" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M18 20h6v6h-6zM27 20h6v6h-6z" fill="#00e6a4"/></svg>
+<div class="brand"><h1>SMART VILLA</h1><p>Home Control</p></div>
+<div class="wifi"><span class="dot"></span><span id="connection">Wi-Fi Connected</span></div>
+</header>
+
+<section id="home" class="view active">
+<div class="hero"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Modern villa"><div class="hero-title"><b>Welcome Home</b><span>Your smart living, made simple</span></div></div>
+<div class="section-title">QUICK ACCESS <span class="rule"></span></div>
+<div class="quick-grid">
+<button class="quick-card" data-open="lighting"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80" alt=""><span class="qtext"><b>Lighting</b><small>Control all rooms</small></span><span class="arrow">›</span></button>
+<button class="quick-card" data-open="sensors"><img src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=700&q=80" alt=""><span class="qtext"><b>Sensors</b><small>Monitor your villa</small></span><span class="arrow">›</span></button>
+<button class="quick-card" data-open="doors"><img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=700&q=80" alt=""><span class="qtext"><b>Doors &amp; Windows</b><small>Control access</small></span><span class="arrow">›</span></button>
+<button class="quick-card" data-open="solar"><img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=700&q=80" alt="" onerror="this.style.display='none'"><span class="qtext"><b>Solar Tracker</b><small>Track sunlight</small></span><span class="arrow">›</span></button>
+<button class="quick-card" data-open="curtains"><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=700&q=80" alt="Curtains" onerror="this.style.display='none'"><span class="qtext"><b>Smart Curtains</b><small>Open, stop & close</small></span><span class="arrow">›</span></button>
+</div>
+</section>
+
+
+<section id="controls" class="view">
+<button class="back" data-open="home">‹ &nbsp; Home</button>
+<h2 class="page-head">Device Controls</h2>
+<p class="page-sub">Quick control for your villa devices</p>
+<div class="section-title">LIGHTING <span class="rule"></span></div>
+<div class="control-list">
+<div class="control-row"><div class="big-icon">⌂</div><div class="wide-copy"><h3>Living Room</h3><p id="control-status-room1">Light control</p></div><label class="toggle"><input type="checkbox" data-room="room1" id="control-room1"><span class="track"></span></label></div>
+<div class="control-row"><div class="big-icon">▱</div><div class="wide-copy"><h3>Bedroom</h3><p id="control-status-room2">Light control</p></div><label class="toggle"><input type="checkbox" data-room="room2" id="control-room2"><span class="track"></span></label></div>
+<div class="control-row"><div class="big-icon">♨</div><div class="wide-copy"><h3>Kitchen</h3><p id="control-status-room3">Light control</p></div><label class="toggle"><input type="checkbox" data-room="room3" id="control-room3"><span class="track"></span></label></div>
+<div class="control-row"><div class="big-icon">♧</div><div class="wide-copy"><h3>Garden</h3><p id="control-status-room4">Light control</p></div><label class="toggle"><input type="checkbox" data-room="room4" id="control-room4"><span class="track"></span></label></div>
+</div>
+<div class="section-title">ACCESS <span class="rule"></span></div>
+<div class="wide-card"><div class="big-icon">▯</div><div class="wide-copy"><h3>Main Door</h3><p id="controlsDoorStatus">Status not connected</p></div></div>
+<div class="actions"><button class="btn" id="controlsDoorOpen">↗ &nbsp; Open</button><button class="btn" id="controlsDoorClose">▣ &nbsp; Close</button></div>
+<div class="notice">Device controls send commands to App Inventor. Firebase and ESP32 blocks must be connected for real hardware control.</div>
+</section>
+
+<section id="lighting" class="view">
+<button class="back" data-open="home">‹ &nbsp; Home</button><h2 class="page-head">Lighting</h2><p class="page-sub">Manage the lights in each area</p>
+<div class="room-grid">
+<article class="room-card"><div class="photo"><img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=700&q=80" alt="Living room"><span class="glyph">⌂</span></div><div class="room-info"><div><h3>Living Room</h3><div id="status-room1" class="status"><span class="dot"></span><span>OFF</span></div></div><label class="toggle"><input id="room1" type="checkbox" data-room="room1"><span class="track"></span></label></div></article>
+<article class="room-card"><div class="photo"><img src="https://images.unsplash.com/photo-1611892440504-42a792e24d32?auto=format&fit=crop&w=700&q=80" alt="Bedroom"><span class="glyph">▱</span></div><div class="room-info"><div><h3>Bedroom</h3><div id="status-room2" class="status"><span class="dot"></span><span>OFF</span></div></div><label class="toggle"><input id="room2" type="checkbox" data-room="room2"><span class="track"></span></label></div></article>
+<article class="room-card"><div class="photo"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80" alt="Kitchen"><span class="glyph">♨</span></div><div class="room-info"><div><h3>Kitchen</h3><div id="status-room3" class="status"><span class="dot"></span><span>OFF</span></div></div><label class="toggle"><input id="room3" type="checkbox" data-room="room3"><span class="track"></span></label></div></article>
+<article class="room-card"><div class="photo"><img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=80" alt="Garden"><span class="glyph">♧</span></div><div class="room-info"><div><h3>Garden</h3><div id="status-room4" class="status"><span class="dot"></span><span>OFF</span></div></div><label class="toggle"><input id="room4" type="checkbox" data-room="room4"><span class="track"></span></label></div></article>
+</div>
+</section>
+
+<section id="sensors" class="view">
+<button class="back" data-open="home">‹ &nbsp; Home</button><h2 class="page-head">Sensors</h2><p class="page-sub">Live readings will appear here after sensor integration</p>
+<div class="wide-card"><div class="big-icon">♨</div><div class="wide-copy"><h3>Temperature</h3><p id="temperature">Waiting for sensor</p></div><b>›</b></div>
+<div class="wide-card"><div class="big-icon">◉</div><div class="wide-copy"><h3>Humidity</h3><p id="humidity">Waiting for sensor</p></div><b>›</b></div>
+<div class="wide-card"><div class="big-icon">⌁</div><div class="wide-copy"><h3>Motion Sensor</h3><p id="motion">Waiting for sensor</p></div><b>›</b></div>
+<div class="wide-card"><div class="big-icon">♨</div><div class="wide-copy"><h3>Smoke / Gas</h3><p id="gas">Not connected</p></div><b>›</b></div>
+</section>
+
+<section id="doors" class="view">
+<button class="back" data-open="home">‹ &nbsp; Home</button><h2 class="page-head">Doors &amp; Windows</h2><p class="page-sub">Access control</p>
+<div class="wide-card"><div class="big-icon">▯</div><div class="wide-copy"><h3>Main Door</h3><p id="doorStatus">Status not connected</p></div></div>
+<div class="actions"><button class="btn" id="doorOpen">♧ &nbsp; Open</button><button class="btn" id="doorClose">▣ &nbsp; Close</button></div>
+<div class="notice">The buttons send commands to App Inventor. The door motor will only move after the Firebase / ESP32 control blocks and motor driver are connected.</div>
+</section>
+
+
+<section id="curtains" class="view">
+<button class="back" data-open="home">‹ &nbsp; Home</button>
+<h2 class="page-head">Smart Curtains</h2>
+<p class="page-sub">Control the living room curtain</p>
+<div class="curtain-hero">
+  <div class="curtain-visual"><div class="curtain-rail"></div><div class="curtain-left"></div><div class="curtain-right"></div><div class="curtain-window"></div></div>
+  <div class="curtain-caption"><span class="sun-mini">☼</span><div><b>Living Room Curtains</b><small>Motorized window covering</small></div><span class="curtain-pill" id="curtainState">Ready</span></div>
+</div>
+<div class="section-title">CURTAIN CONTROL <span class="rule"></span></div>
+<div class="curtain-actions">
+  <button class="curtain-btn" id="curtainOpen"><span>↑</span><b>Open</b><small>Pull curtains apart</small></button>
+  <button class="curtain-btn stop" id="curtainStop"><span>Ⅱ</span><b>Stop</b><small>Stop movement</small></button>
+  <button class="curtain-btn" id="curtainClose"><span>↓</span><b>Close</b><small>Cover the window</small></button>
+</div>
+<div class="wide-card" style="margin-top:14px"><div class="big-icon">◷</div><div class="wide-copy"><h3>Motor status</h3><p id="curtainMotorStatus">Waiting for ESP32 connection</p></div></div>
+<div class="notice">Buttons send commands through WebViewer to MIT App Inventor. Add the Firebase blocks and ESP32 motor driver before expecting physical movement. Use suitable end-stop switches to prevent the curtain mechanism from being pulled too far.</div>
+</section>
+
+<section id="solar" class="view">
+<button class="back" data-open="home">‹ &nbsp; Home</button><h2 class="page-head">Solar Tracker</h2><p class="page-sub">Solar monitoring and tracking</p>
+<img class="solar-photo" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1000&q=80" alt="Solar panels">
+<div class="wide-card" style="margin-top:12px"><div class="big-icon">☀</div><div class="wide-copy"><h3>Tracking Status</h3><p id="solarStatus">Ready to connect</p></div></div>
+<div class="metric-grid"><div class="metric"><small>Panel Angle</small><b id="panelAngle">--°</b></div><div class="metric"><small>Sunlight Intensity</small><b id="sunlight">-- lux</b></div><div class="metric"><small>Power Output</small><b id="power">-- W</b></div><div class="metric"><small>Battery</small><b id="battery">--%</b></div></div>
+<div class="mode-row"><button class="selected" id="solarAuto">☀ Automatic</button><button id="solarManual">⚙ Manual</button></div>
+<div class="notice">Values are placeholders until ESP32 sensors and solar tracking data are connected.</div>
+</section>
+
+<section id="more" class="view"><h2 class="page-head">More</h2><p class="page-sub">Smart Villa settings</p><div class="wide-card"><div class="big-icon">⚙</div><div class="wide-copy"><h3>Connection</h3><p>Firebase and ESP32 setup</p></div></div><div class="notice">This screen is a UI starter. Live connection status will be added after Firebase blocks are configured.</div></section>
+</div>
+
+<nav class="bottom">
+<button class="nav active" data-tab="home"><span class="ico">⌂</span>Home</button>
+<button class="nav" data-tab="controls"><span class="ico">⌘</span>Controls</button>
+<button class="nav" data-tab="solar"><span class="ico">⚙</span>Systems</button>
+<button class="nav" data-tab="more"><span class="ico">•••</span>More</button>
+</nav>
+
+<div id="toast" class="toast" role="status"></div>
+<script src="app.js"></script>
+</body>
+</html>
